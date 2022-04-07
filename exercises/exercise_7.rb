@@ -24,17 +24,10 @@ class Store < ActiveRecord::Base
  validates :name, length: { minimum: 3 } 
  validates :annual_revenue, numericality: { only_integer: true, greater_than_or_equal_to: 0} 
 
- validate :carry_apparel
-
- def carry_apparel
-  if mens_apparel == false && womens_apparel == false
-    errors[:mens_apparel] << "A store needs to carry either Men's or Women's apparel."
-  end
- end
 end
 
 
-print "Please provide a store name: "
+print "Enter a store name: "
 store_name = gets.chomp.to_s
 
 new_store = Store.create(name: store_name, annual_revenue: 1200000, mens_apparel: true, womens_apparel: true)
